@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+ * @author zzh
+ * @date 2024-03-28
+ */
 @Data
 @TableName("mb_df_metadata_0001")
 public class MetaData001 {

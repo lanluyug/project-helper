@@ -15,16 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * 导出indexcode， 第一行写大类 后面2~n行写二级CnName
+ * example:
+ *
+ * 将application.properties中的dumpIndexCodeService=on
  * @author zzh
  * @date 2024-03-26
  */
 @Service
 @Slf4j
-@ConditionalOnProperty("dumpIndexCodeService")
+@ConditionalOnProperty(value = "dumpIndexCodeService", havingValue = "on")
 public class DumpIndexCodeService implements CommandLineRunner {
 
     @Autowired
     private DumpIndexCodeMapper dumpIndexCodeMapper;
+
     public List<MetaData001> getMetaData001(String baseName, String cnName){
         LambdaQueryWrapper<MetaData001> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(MetaData001::getProCode, "PD_01");
@@ -52,7 +58,7 @@ public class DumpIndexCodeService implements CommandLineRunner {
                 indexCodes.addAll(dumpIndexCodeMapper.queryIndexCodes(data001.getFrameIdPath() + "%"));
             }
             log.info("-------------查询结束：{}", split[i].trim());
-            FileUtil.writeLines(indexCodes, "C:\\Users\\pc\\Desktop\\湘钢指标\\indexCode.csv", StandardCharsets.UTF_8, true);
+            FileUtil.writeLines(indexCodes, "C:\\Users\\pc\\Desktop\\indexCode.csv", StandardCharsets.UTF_8, true);
             log.info("-------------写入文件结束：{}", split[i].trim());
             log.info("-----------------------------------------------------------");
         }

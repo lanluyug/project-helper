@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author zzh
+ * @date 2024-03-28
+ */
 @Mapper
 @Repository
 public interface DumpIndexCodeMapper extends BaseMapper<MetaData001> {
