@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.index;
+package kk.lanluyu.projecthelper.mysteel.index;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

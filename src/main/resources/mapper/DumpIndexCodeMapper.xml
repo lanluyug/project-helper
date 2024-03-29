@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kk.lanluyu.projecthelper.index.DumpIndexCodeMapper">
+<mapper namespace="kk.lanluyu.projecthelper.mysteel.index.DumpIndexCodeMapper">
 
     <select id="queryIndexCodes" resultType="string">
         select tt.index_code  from (select index_code from mb_df_metadata_0002 where FRAME_ID in (

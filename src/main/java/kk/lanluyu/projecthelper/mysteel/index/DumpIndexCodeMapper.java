@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.index;
+package kk.lanluyu.projecthelper.mysteel.index;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;

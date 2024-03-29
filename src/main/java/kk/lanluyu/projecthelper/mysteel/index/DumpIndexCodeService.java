@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.index;
+package kk.lanluyu.projecthelper.mysteel.index;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
