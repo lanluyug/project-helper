@@ -31,11 +31,36 @@ public class DumpIndexCodeService implements CommandLineRunner {
     @Autowired
     private DumpIndexCodeMapper dumpIndexCodeMapper;
 
+    /**
+     * 获取二级框架下FrameIdPath
+     * @param baseName 一级目录得名称
+     * @param cnName 二级目录的名称
+     * @return
+     */
     public List<MetaData001> getMetaData001(String baseName, String cnName){
         LambdaQueryWrapper<MetaData001> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(MetaData001::getProCode, "PD_01");
         wrapper.eq(MetaData001::getCnName, cnName);
         wrapper.eq(MetaData001::getFramePath, baseName + "|" + cnName);
+        List<MetaData001> metaData001s = dumpIndexCodeMapper.selectList(wrapper);
+        if(metaData001s.isEmpty()){
+            log.error("导出失败:{}", cnName);
+        }
+
+        return metaData001s;
+    }
+
+    /**
+     * 获取三级框架下FrameIdPath价格
+     * @param baseName 一级目录得名称
+     * @param cnName 二级目录的名称
+     * @return
+     */
+    public List<MetaData001> getMetaData001_03(String baseName, String cnName){
+        LambdaQueryWrapper<MetaData001> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(MetaData001::getProCode, "PD_01");
+        wrapper.eq(MetaData001::getCnName, "价格");
+        wrapper.eq(MetaData001::getFramePath, baseName + "|" + cnName + "|价格");
         List<MetaData001> metaData001s = dumpIndexCodeMapper.selectList(wrapper);
         if(metaData001s.isEmpty()){
             log.error("导出失败:{}", cnName);
