@@ -1,7 +1,7 @@
 package kk.lanluyu.projecthelper.mybatis;
 
-import cn.hutool.core.util.StrUtil;
 import kk.lanluyu.projecthelper.util.ConsoleUtil;
+import org.dromara.hutool.core.text.StrUtil;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +43,7 @@ public class SqlHelper {
                 })
                 .collect(Collectors.toList());
         for (String param : params) {
-            sql = StrUtil.replaceFirst(sql, "?", param);
+            sql = StrUtil.replaceFirst(sql, "?", param, false);
         }
         ConsoleUtil.printAndCopy2Clipboard(sql);
 

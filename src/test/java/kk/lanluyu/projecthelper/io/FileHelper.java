@@ -1,11 +1,12 @@
 package kk.lanluyu.projecthelper.io;
 
-import cn.hutool.core.collection.ListUtil;
-import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.collection.ListUtil;
+import org.dromara.hutool.core.io.file.FileUtil;
 import org.junit.Test;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class FileHelper {
         // 需要合并的目录
         String inputDir = "E:\\data\\prod";
         // 目录中需要排除的文件名（不带路径）
-        String name = FileUtil.getName(outputPath);
+        String name = FileUtil.getName(Paths.get(outputPath));
         String[] inputExcludeFileNames = {name, };
         List<String> excludeNames = ListUtil.of(inputExcludeFileNames);
 
