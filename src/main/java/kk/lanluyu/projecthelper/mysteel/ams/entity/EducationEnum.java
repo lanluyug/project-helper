@@ -3,8 +3,10 @@ package kk.lanluyu.projecthelper.mysteel.ams.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.function.Function;
-
+/**
+ * @author zzh
+ * @date 2024-04-17
+ */
 @Getter
 @AllArgsConstructor
 public enum EducationEnum {
@@ -45,14 +47,4 @@ public enum EducationEnum {
         }
         return null;
     }
-    public static Function<Integer, String> changeValue = value ->{
-        if(value != null){
-            for(EducationEnum frame: EducationEnum.values()){
-                if(value.equals(frame.value)){
-                    return frame.name;
-                }
-            }
-        }
-        return null;
-    };
 }

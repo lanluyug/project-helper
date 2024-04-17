@@ -6,6 +6,10 @@ import lombok.Data;
 import org.dromara.hutool.core.date.DateTime;
 import org.dromara.hutool.core.date.DateUtil;
 
+/**
+ * @author zzh
+ * @date 2024-04-17
+ */
 @Data
 @TableName("ams_farmer_report_type")
 public class FarmerReportType extends BaseDTO {

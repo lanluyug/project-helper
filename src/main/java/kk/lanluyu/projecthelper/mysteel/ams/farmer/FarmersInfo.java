@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import kk.lanluyu.projecthelper.mysteel.ams.entity.BaseDTO;
 import lombok.Data;
-
-import javax.persistence.Transient;
 import java.util.Objects;
 
 /**
