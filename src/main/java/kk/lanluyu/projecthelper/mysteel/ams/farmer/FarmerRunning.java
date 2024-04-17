@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.common.collect.Sets;
 import kk.lanluyu.projecthelper.mysteel.ams.entity.EducationEnum;
+import kk.lanluyu.projecthelper.mysteel.ams.entity.ReportTypeEnum;
 import kk.lanluyu.projecthelper.mysteel.ams.entity.YesOrNoEnum;
 import kk.lanluyu.projecthelper.mysteel.ams.farmer.basefarmer.BasicRegionInfo;
 import kk.lanluyu.projecthelper.mysteel.ams.farmer.basefarmer.BasicRegionInfoMapper;
@@ -13,6 +14,7 @@ import org.dromara.hutool.core.bean.BeanUtil;
 import org.dromara.hutool.core.collection.CollUtil;
 import org.dromara.hutool.core.date.DateTime;
 import org.dromara.hutool.core.date.DateUtil;
+import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -34,26 +36,27 @@ public class FarmerRunning  implements CommandLineRunner {
     @Autowired
     private FarmersInfoMapper farmersInfoMapper;
 
+
+    @Autowired
+    private FarmerReportTypeMapper farmerReportTypeMapper;
+
+    @Autowired
+    private BreedInfoMapper breedInfoMapper;
+
     @Autowired
     private BasicRegionInfoMapper basicRegionInfoMapper;
 
     @Override
     public void run(String... args) {
-
+        insertFarmer();
     }
 
 
-    /**
-     * step 2
-     */
-    private void step2(){
-
-    }
     /**
      * step 1
      */
     private void insertFarmer(){
-        DateTime baseDate = DateUtil.parse("2024-04-15 15:00:00");
+        DateTime baseDate = DateUtil.parse("2024-04-16 15:00:00");
         int maxValue = 659004037;
         List<FarmerExcel> readExcel = read()
                 ;
@@ -75,7 +78,8 @@ public class FarmerRunning  implements CommandLineRunner {
         baseWrap.eq(BasicRegionInfo::getIsDelete, YesOrNoEnum.NO.getCode());
         Map<String, String> regionCodeMap = basicRegionInfoMapper.selectList(baseWrap).stream()
                 .collect(Collectors.toMap(BasicRegionInfo::getName, BasicRegionInfo::getCode, (a, b) -> a));
-
+        Map<String, String> oldBreedMap = breedInfoMapper.queryAllCode().stream()
+                .collect(Collectors.toMap(BreedInfo::getOldCode, BreedInfo::getCode, (a, b) -> a));
         List<FarmersInfo> resultInsert = new ArrayList<>();
         for (String code : increment) {
             List<FarmerExcel> farmerExcels = excelMap.get(code);
@@ -92,7 +96,7 @@ public class FarmerRunning  implements CommandLineRunner {
                 farmersInfo.setCreateTime(baseDate);
                 farmersInfo.setUpdateTime(baseDate);
                 farmersInfo.setEducation(EducationEnum.getValue(farmerExcel.getEdu()));
-                farmersInfo.setRegionCode(regionCodeMap.get(farmerExcel.getCity()));
+                farmersInfo.setRegionCode(regionCodeMap.get(farmerExcel.getCity().replace("第", "农")));
                 farmersInfo.setCreateUserId(25L);
                 farmersInfo.setUpdateUserId(25L);
                 farmersInfo.setCreateUserName("admin");
@@ -103,10 +107,100 @@ public class FarmerRunning  implements CommandLineRunner {
             }
         }
         farmersInfoMapper.insertBatchSomeColumn(resultInsert);
+        List<FarmerReportType> typeList = new ArrayList<>();
+        for (int i = 0; i < resultInsert.size(); i++) {
+            List<String> cgList = new ArrayList<>();
+            List<String> zbList = new ArrayList<>();
+            List<String> yjList = new ArrayList<>();
+            List<Integer> spList = new ArrayList<>();
+            FarmersInfo farmersInfo = resultInsert.get(i);
+            FarmerReportType farmerReportType = new FarmerReportType();
+            farmerReportType.setFarmerCode(farmersInfo.getCode());
+            String breedInfosC = farmersInfo.getBreedInfosC();
+            String breedInfosZ= farmersInfo.getBreedInfosZ();
+            String breedInfosS= farmersInfo.getBreedInfosS();
+            String reports= farmersInfo.getReports();
+            addBreedList(breedInfosC, oldBreedMap, cgList);
+            addBreedList(breedInfosZ, oldBreedMap, zbList);
+            addBreedList(breedInfosS, oldBreedMap, yjList);
+            if(StrUtil.isNotEmpty(reports)){
+                String[] split = reports.split(",");
+                for (String s : split) {
+                    Integer type = ReportTypeEnum.getValueByName(s);
+                    if(type == null){
+                        continue;
+                    }
+                    spList.add(type);
+                }
+            }
+
+            // 添加
+            if(CollUtil.isNotEmpty(cgList)){
+                for (String code : cgList) {
+                    FarmerReportType farmerReportType1 = FarmerReportType.build2023Default();
+                    farmerReportType1.setFarmerCode(farmersInfo.getCode());
+                    farmerReportType1.setReportType(2);
+                    farmerReportType1.setBreedCode(code);
+                    typeList.add(farmerReportType1);
+                }
+            }
+
+            if(CollUtil.isNotEmpty(zbList)){
+                for (String code : zbList) {
+                    FarmerReportType farmerReportType1 = FarmerReportType.build2023Default();
+                    farmerReportType1.setFarmerCode(farmersInfo.getCode());
+                    farmerReportType1.setReportType(1);
+                    farmerReportType1.setBreedCode(code);
+                    typeList.add(farmerReportType1);
+                }
+            }
+
+            if(CollUtil.isNotEmpty(yjList)){
+                for (String code : yjList) {
+                    FarmerReportType farmerReportType1 = FarmerReportType.build2023Default();
+                    farmerReportType1.setFarmerCode(farmersInfo.getCode());
+                    farmerReportType1.setReportType(3);
+                    farmerReportType1.setBreedCode(code);
+                    typeList.add(farmerReportType1);
+                }
+            }
+            if(CollUtil.isNotEmpty(spList)){
+                for (Integer type : spList) {
+                    FarmerReportType farmerReportType1 = FarmerReportType.build2023Default();
+                    farmerReportType1.setFarmerCode(farmersInfo.getCode());
+                    farmerReportType1.setReportType(type);
+                    farmerReportType1.setBreedCode("");
+                    typeList.add(farmerReportType1);
+                }
+            }
+        }
+        System.out.println();
+        farmerReportTypeMapper.insertBatchSomeColumn(typeList);
+    }
+
+
+    private void addBreedList(String breedInfos, Map<String, String> oldBreedMap, List<String> list){
+        if(StrUtil.isNotEmpty(breedInfos)){
+            String[] split = breedInfos.split(",");
+            for (String s : split) {
+                int begin = s.indexOf("(");
+                int end = s.indexOf(")");
+                if(begin < 0){
+                    continue;
+                }
+                String oldBreed = s.substring(begin + 1, end);
+                String breedCode = oldBreedMap.get(oldBreed);
+                if(breedCode == null){
+                    breedCode = oldBreed;
+                }
+                list.add(breedCode);
+            }
+        }
     }
 
     private List<FarmerExcel> read(){
-        String fileName = "E:\\projects\\doc\\发改委&农本\\now\\2023年种植业、饲养业、畜牧业、专项调查农户情况.xls";
+//        String fileName = "E:\\projects\\doc\\发改委&农本\\now\\2023年种植业、饲养业、畜牧业、专项调查农户情况.xls";
+        String fileName = "E:\\projects\\doc\\发改委&农本\\now\\2023兵团农户(1).xlsx";
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
         // 这里默认每次会读取100条数据 然后返回过来 直接调用使用数据就行
         // 具体需要返回多少行可以在`PageReadListener`的构造函数设置

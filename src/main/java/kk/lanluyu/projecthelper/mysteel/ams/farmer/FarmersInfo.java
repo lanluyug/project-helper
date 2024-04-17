@@ -1,9 +1,13 @@
 package kk.lanluyu.projecthelper.mysteel.ams.farmer;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import kk.lanluyu.projecthelper.mysteel.ams.entity.BaseDTO;
 import lombok.Data;
 
+import javax.persistence.Transient;
 import java.util.Objects;
 
 /**
@@ -68,6 +72,20 @@ public class FarmersInfo extends BaseDTO {
      * 农户来源
      */
     private Integer source;
+
+    @TableField(exist = false)
+    @ExcelProperty(value = "品种名称(代码)[规模]--常规调查", index = 6)
+    private String breedInfosC;
+    @TableField(exist = false)
+    @ExcelProperty(value = "品种名称(代码)[规模]--直报调查", index = 7)
+    private String breedInfosZ;
+    @TableField(exist = false)
+    @ExcelProperty(value = "品种名称(代码)[规模]--生猪月报", index = 8)
+    private String breedInfosS;
+
+    @TableField(exist = false)
+    @ExcelProperty(value = "专项调查", index = 9)
+    private String reports;
 
     @Override
     public boolean equals(Object o) {
