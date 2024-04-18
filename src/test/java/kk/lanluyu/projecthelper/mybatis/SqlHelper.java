@@ -21,13 +21,13 @@ public class SqlHelper {
     public void completeSql(){
         String aa =
 
-                "==>  Preparing: SELECT farmer_id,county_code,province_code FROM ams_report_farmer_info WHERE (report_type = ? AND industry_type = ? AND check_year >= ? AND check_year <= ? AND is_delete = ?)\n" +
-                        "==> Parameters: 1(Integer), 0(Integer), 2020(Integer), 2020(Integer), false(Boolean)\n";
+                "2024-04-18 14:10:06.286 DEBUG 7004 --- [nio-9002-exec-4] c.m.a.m.R.selectList                     : ==>  Preparing: SELECT farmer_id,county_code,province_code FROM ams_report_farmer_info WHERE (report_type = ? AND industry_type = ? AND check_year >= ? AND check_year <= ? AND county_code = ? AND is_delete = ?)\n" +
+                        "2024-04-18 14:10:06.287 DEBUG 7004 --- [nio-9002-exec-4] c.m.a.m.R.selectList                     : ==> Parameters: 2(Integer), 0(Integer), 2024(Integer), 2024(Integer), 370812(String), false(Boolean)\n";
         String[] split = aa.split("\n");
-        String sql = split[0].replace("==>", "")
-                .replace("Preparing:", "")
+        String sql = split[0].split("==>")[1]
+                .replace("Preparing:", "").trim()
                 ;
-        List<String> params = Arrays.stream(split[1].replace("==>", "")
+        List<String> params = Arrays.stream(split[1].split("==>")[1]
                         .replace("Parameters:", "")
                         .trim().split(","))
                 .map(item->{
@@ -37,6 +37,10 @@ public class SqlHelper {
                         return item.split("\\(Long\\)")[0];
                     }else if(item.contains("(String)")){
                         return  "'" + item.split("\\(String\\)")[0].trim() +"'";
+                    }else if(item.contains("(Boolean)")){
+                        boolean aFalse = item.contains("false");
+                        if(aFalse) return "0";
+                        return "1";
                     }
                     return "";
                 })
