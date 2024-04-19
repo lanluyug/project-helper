@@ -78,8 +78,7 @@ public class FarmerRunning  implements CommandLineRunner {
         baseWrap.eq(BasicRegionInfo::getIsDelete, YesOrNoEnum.NO.getCode());
         Map<String, String> regionCodeMap = basicRegionInfoMapper.selectList(baseWrap).stream()
                 .collect(Collectors.toMap(BasicRegionInfo::getName, BasicRegionInfo::getCode, (a, b) -> a));
-        Map<String, String> oldBreedMap = breedInfoMapper.queryAllCode().stream()
-                .collect(Collectors.toMap(BreedInfo::getOldCode, BreedInfo::getCode, (a, b) -> a));
+
         List<FarmersInfo> resultInsert = new ArrayList<>();
         for (String code : increment) {
             List<FarmerExcel> farmerExcels = excelMap.get(code);
@@ -96,7 +95,7 @@ public class FarmerRunning  implements CommandLineRunner {
                 farmersInfo.setCreateTime(baseDate);
                 farmersInfo.setUpdateTime(baseDate);
                 farmersInfo.setEducation(EducationEnum.getValue(farmerExcel.getEdu()));
-                farmersInfo.setRegionCode(regionCodeMap.get(farmerExcel.getCity().replace("第", "农")));
+                farmersInfo.setRegionCode(regionCodeMap.get(farmerExcel.getCounty()));
                 farmersInfo.setCreateUserId(25L);
                 farmersInfo.setUpdateUserId(25L);
                 farmersInfo.setCreateUserName("admin");
@@ -107,6 +106,13 @@ public class FarmerRunning  implements CommandLineRunner {
             }
         }
         farmersInfoMapper.insertBatchSomeColumn(resultInsert);
+
+
+    }
+
+    public void step2(List<FarmersInfo> resultInsert){
+        Map<String, String> oldBreedMap = breedInfoMapper.queryAllCode().stream()
+                .collect(Collectors.toMap(BreedInfo::getOldCode, BreedInfo::getCode, (a, b) -> a));
         List<FarmerReportType> typeList = new ArrayList<>();
         for (int i = 0; i < resultInsert.size(); i++) {
             List<String> cgList = new ArrayList<>();
@@ -177,7 +183,6 @@ public class FarmerRunning  implements CommandLineRunner {
         System.out.println();
         farmerReportTypeMapper.insertBatchSomeColumn(typeList);
     }
-
 
     private void addBreedList(String breedInfos, Map<String, String> oldBreedMap, List<String> list){
         if(StrUtil.isNotEmpty(breedInfos)){

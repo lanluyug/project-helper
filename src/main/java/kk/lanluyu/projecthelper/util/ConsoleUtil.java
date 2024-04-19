@@ -11,8 +11,8 @@ import org.dromara.hutool.swing.clipboard.ClipboardUtil;
 public class ConsoleUtil {
 
 
-    public static void printAndCopy2Clipboard(String text){
-        log.info(text);
-        ClipboardUtil.setStr(text);
+    public static void printAndCopy2Clipboard(CharSequence text){
+        log.info(text.toString());
+        ClipboardUtil.setStr(text.toString());
     }
 }
