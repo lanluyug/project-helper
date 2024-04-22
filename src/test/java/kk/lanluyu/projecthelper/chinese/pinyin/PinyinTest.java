@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.chinese.pinyin;
 
-import kk.lanluyu.projecthelper.util.ConsoleUtil;
+import kk.lanluyu.projecthelper.util.Util;
 import org.dromara.hutool.core.io.file.FileUtil;
 import org.dromara.hutool.core.io.resource.Resource;
 import org.dromara.hutool.core.io.resource.ResourceUtil;
@@ -58,6 +58,6 @@ public class PinyinTest {
             String enumConstructLine = firstLetter + "(" + id + "L, " + "\"" + name + "\"),\n";
             sb.append(enumConstructLine);
         }
-        ConsoleUtil.printAndCopy2Clipboard(sb);
+        Util.printAndCopy2Clipboard(sb);
     }
 }

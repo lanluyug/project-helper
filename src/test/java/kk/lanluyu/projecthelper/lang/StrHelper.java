@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.lang;
 
-import kk.lanluyu.projecthelper.util.ConsoleUtil;
+import kk.lanluyu.projecthelper.util.Util;
 import org.junit.Test;
 
 public class StrHelper {
@@ -12,7 +12,7 @@ public class StrHelper {
                         "from ams_report_task_config_breed t1 " +
                         "left join ams_breed_info t2 on t1.approve_breed_id = t2.id where t1.config_id = #{configId} and t1.is_delete = 0 order by t1.order_num"
                 ;
-        ConsoleUtil.printAndCopy2Clipboard(aa);
+        Util.printAndCopy2Clipboard(aa);
 
     }
 }
