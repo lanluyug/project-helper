@@ -1,0 +1,18 @@
+package ${packageName}.domain;
+
+import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.Data;
+
+/**
+ * ${functionName}
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+public class ${className}Excel {
+
+#foreach ($column in $columns)
+    @ExcelProperty(value = "$column.head", index = $column.index)
+    private $column.javaType $column.variable;
+#end
+}
