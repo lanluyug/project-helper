@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.generate.entity;
+package kk.lanluyu.projecthelper.generateclass.entity;
 
 import lombok.Data;
 import org.dromara.hutool.core.date.DateUtil;
