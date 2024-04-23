@@ -3,7 +3,8 @@ package kk.lanluyu.projecthelper.translate.baidu;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-
+import org.dromara.hutool.crypto.digest.DigestUtil;
+import org.dromara.hutool.http.HttpUtil;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,22 +39,24 @@ public class TransApi {
      * @throws UnsupportedEncodingException
      */
     public String getTransResult(String query, String from, String to) throws Exception {
-        /**
+        /*
          *    百度翻译的标准版 QPS=1
          */
         TimeUnit.SECONDS.sleep(1);
-        Map<String, String> params = buildParams(query, from, to);
-        //返回的结果是一个JSON字符串,
-        // {"error_code":"52003","error_msg":"UNAUTHORIZED USER"}
-        // 如{"from":"zh","to":"en","trans_result":[{"src":"\u963f\u62c9\u65af\u52a0","dst":"Alaska"}]}
-        String body = HttpGet.get(TRANS_API_HOST, params);
+        Map<String, Object> params = buildParams(query, from, to);
+        /*
+         * 返回的结果是一个JSON字符串,
+         * {"error_code":"52003","error_msg":"UNAUTHORIZED USER"}
+         * 如{"from":"zh","to":"en","trans_result":[{"src":"\u963f\u62c9\u65af\u52a0","dst":"Alaska"}]}
+         */
+        String body = HttpUtil.get(TRANS_API_HOST, params);
         JSONObject jsonObject = JSONObject.parseObject(body);
         JSONArray transResult = jsonObject.getJSONArray("trans_result");
         return transResult.getJSONObject(0).getString("dst");
     }
 
-    private Map<String, String> buildParams(String query, String from, String to) throws Exception {
-        Map<String, String> params = new HashMap<>();
+    private Map<String, Object> buildParams(String query, String from, String to) {
+        Map<String, Object> params = new HashMap<>();
         params.put("q", query);
         params.put("from", from);
         params.put("to", to);
@@ -63,7 +66,7 @@ public class TransApi {
         params.put("salt", salt);
         // 签名
         String src = APP_ID + query + salt + SECURITY_KEY;
-        params.put("sign", MD5.md5(src));
+        params.put("sign", DigestUtil.md5Hex(src));
         return params;
     }
 }

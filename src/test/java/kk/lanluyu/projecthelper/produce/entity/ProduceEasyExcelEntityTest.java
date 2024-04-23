@@ -1,7 +1,11 @@
 package kk.lanluyu.projecthelper.produce.entity;
 
 import kk.lanluyu.projecthelper.util.Util;
+import org.dromara.hutool.extra.pinyin.PinyinUtil;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author zzh
@@ -24,35 +28,26 @@ public class ProduceEasyExcelEntityTest {
         /**
          * baiduTranslate = 1
          * randomTranslate = 2
+         * pinyin首字母 = 3
          * */
-        int variableType = 1;
+        int variableType = 3;
 
 
         String[] split = input.split("\n");
         String header = split[0];
         String[] items = header.split("\t");
         StringBuilder naming = new StringBuilder();
+        Set<String> namingSets = new HashSet<>();
         if(split.length >= 2){
             naming = new StringBuilder(split[1]);
         } else {
-            if(variableType == 1){
-                for (int i = 0; i < items.length; i++) {
-                    String translated = Util.getChineseVariableName(items[i]);
-                    naming.append(translated);
-                    if(i != items.length - 1){
-                        naming.append("\t");
-                    }
-                }
-            }else if(variableType == 2){
-                for (int i = 0; i < items.length; i++) {
-                    String translated = Util.getRandomName();
-                    naming.append(translated);
-                    if(i != items.length - 1){
-                        naming.append("\t");
-                    }
+            for (int i = 0; i < items.length; i++) {
+                String translated = getTranslateInfoByType(variableType, items[i], namingSets);
+                naming.append(translated);
+                if(i != items.length - 1){
+                    naming.append("\t");
                 }
             }
-
         }
         String[] names = naming.toString().split("\t");
         // 添加包名
@@ -84,6 +79,22 @@ public class ProduceEasyExcelEntityTest {
         }
         code.append("}");
         Util.printAndCopy2Clipboard(code);
+    }
+
+    private String getTranslateInfoByType(Integer type, String text, Set<String> namingSet){
+
+        if(type == null){
+            return PinyinUtil.getFirstLetter(text, "");
+        }
+        switch (type){
+            case 1:
+                return Util.getChineseVariableName(text);
+            case 2:
+                return Util.getRandomName();
+            case 3:
+            default:
+                return Util.getFirstLetterUnrepeated(text, namingSet);
+        }
     }
 
 }
