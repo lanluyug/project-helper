@@ -2,8 +2,8 @@ package kk.lanluyu.projecthelper.produceclass.entity;
 
 import kk.lanluyu.projecthelper.generateclass.entity.Columns;
 import kk.lanluyu.projecthelper.generateclass.entity.impl.EasyExcelDomain;
-import kk.lanluyu.projecthelper.util.Util;
-import kk.lanluyu.projecthelper.util.VelocityUtil;
+import kk.lanluyu.projecthelper.common.util.Util;
+import kk.lanluyu.projecthelper.common.util.VelocityUtil;
 import org.apache.velocity.VelocityContext;
 import org.dromara.hutool.extra.pinyin.PinyinUtil;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.mybatis;
 
-import kk.lanluyu.projecthelper.util.Util;
+import kk.lanluyu.projecthelper.common.util.Util;
 import org.dromara.hutool.core.text.StrUtil;
 import org.junit.Test;
 import java.util.Arrays;

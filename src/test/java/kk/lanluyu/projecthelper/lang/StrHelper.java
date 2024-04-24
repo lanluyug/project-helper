@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.lang;
 
-import kk.lanluyu.projecthelper.util.Util;
+import kk.lanluyu.projecthelper.common.util.Util;
 import org.junit.Test;
 
 public class StrHelper {

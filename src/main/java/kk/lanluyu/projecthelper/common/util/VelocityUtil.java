@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.util;
+package kk.lanluyu.projecthelper.common.util;
 
 import kk.lanluyu.projecthelper.common.Constants;
 import kk.lanluyu.projecthelper.generateclass.entity.BaseGenerateInfo;

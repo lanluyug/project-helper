@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.chinese.pinyin;
 
-import kk.lanluyu.projecthelper.util.Util;
+import kk.lanluyu.projecthelper.common.util.Util;
 import org.dromara.hutool.core.io.file.FileUtil;
 import org.dromara.hutool.core.io.resource.Resource;
 import org.dromara.hutool.core.io.resource.ResourceUtil;

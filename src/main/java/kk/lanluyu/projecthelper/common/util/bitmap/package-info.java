@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.util.bitmap;
+package kk.lanluyu.projecthelper.common.util.bitmap;
 
 /**
  * copy from
