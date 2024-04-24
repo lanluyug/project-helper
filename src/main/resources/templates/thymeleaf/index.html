@@ -1,51 +1,35 @@
 <!DOCTYPE html>
 
-<html>
+<html style="height: 100%; margin: 0">
 
   <head>
-    <title>Thymeleaf Sandbox</title>
+    <title>Project Helper</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
 
-  <body>
+  <body style="height: 100%; width: 100%; margin: 0;">
+    <div class="index-left" style="min-height: 100%; width: 200px;
+    background-color: darkcyan; display: flex;float: left">
+      left
+    </div>
+    <div class="index-right" style="height: 100%; width: calc(100% - 200px);
+    float: left; background-color: blueviolet;">
 
-    <h2>Spring BigList WebFlux - Thymeleaf Sandbox application</h2>
-
-    <p>Using template engine: <strong>Thymeleaf</strong> (see logo below)</p>
-
-    <img th:src="@{/images/thymeleaf_logo.png}">
-
-    <p><span>Current time is [[${#dates.createNow()}]]</span></p>
-
-    <p>
-      Some URLs:
-    </p>
-
-    <ul>
-      <li>Thymeleaf:
-        <ul>
-          <li><a th:href="@{/thymeleaf}">Index</a></li>
-          <li><a th:href="@{/smalllist.thymeleaf}">Small List</a></li>
-          <li><a th:href="@{/biglist-full.thymeleaf}">Big List in FULL mode</a></li>
-          <li><a th:href="@{/biglist-chunked.thymeleaf}">Big List in CHUNKED mode</a></li>
-          <li><a th:href="@{/biglist-datadriven.thymeleaf}">Big List in DATA-DRIVEN mode</a></li>
-        </ul>
-      </li>
-      <li>FreeMarker:
-        <ul>
-          <li><a th:href="@{/freemarker}">Index</a></li>
-          <li><a th:href="@{/smalllist.freemarker}">Small List</a></li>
-          <li><a th:href="@{/biglist.freemarker}">Big List</a></li>
-        </ul>
-      </li>
-      <li>JSON:
-        <ul>
-          <li><a th:href="@{/smalllist.json}">Small List</a></li>
-          <li><a th:href="@{/biglist.json}">Big List</a></li>
-        </ul>
-      </li>
-    </ul>
-
+      <div class="index-right-top" style="height: 100px; width: 100%;background-color: aqua;">
+        right-top
+      </div>
+      <div class="index-right-bottom" style="height: calc(100% - 140px); width: calc(100% - 100px);;
+      background-color: deeppink; margin: 20px;">
+          <div class="bottom-text" style="margin: 10px; height: 60%; width:50%;float: left;
+          background-color: blanchedalmond"></div>
+          <div class="bottom-introduce" style="margin: 10px; height: 60%; width:30%;float: left;
+          background-color: firebrick"></div>
+          <div class="bottom-console" style="margin: 10px; height: 30%; width: 50%;float: left;
+          background-color: firebrick"></div>
+          <div class="bottom-other" style="margin: 10px; height: 30%; width:30%;float: left;
+          background-color: firebrick"></div>
+      </div>
+    </div>
   </body>
   
 </html>

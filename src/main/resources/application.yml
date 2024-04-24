@@ -13,3 +13,8 @@ spring:
       max-file-size: 10MB
       # 设置总上传的文件大小
       max-request-size: 20MB
+
+logging:
+  level:
+    root: INFO
+    kk.lanluyu.projecthelper.conf: DEBUG
