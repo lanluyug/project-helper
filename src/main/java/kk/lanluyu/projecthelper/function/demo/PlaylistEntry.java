@@ -17,7 +17,7 @@
  * 
  * =============================================================================
  */
-package kk.lanluyu.projecthelper.bussiness.demo;
+package kk.lanluyu.projecthelper.function.demo;
 
 
 

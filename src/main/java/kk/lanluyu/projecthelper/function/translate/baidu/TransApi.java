@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.translate.baidu;
+package kk.lanluyu.projecthelper.function.translate.baidu;
 
 
 import com.alibaba.fastjson2.JSONArray;

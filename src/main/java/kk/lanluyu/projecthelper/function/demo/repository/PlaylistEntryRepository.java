@@ -17,9 +17,9 @@
  * 
  * =============================================================================
  */
-package kk.lanluyu.projecthelper.bussiness.demo.repository;
+package kk.lanluyu.projecthelper.function.demo.repository;
 
-import kk.lanluyu.projecthelper.bussiness.demo.PlaylistEntry;
+import kk.lanluyu.projecthelper.function.demo.PlaylistEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

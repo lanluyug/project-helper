@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.generateclass.entity;
+package kk.lanluyu.projecthelper.function.generateclass.entity;
 
 import lombok.Data;
 

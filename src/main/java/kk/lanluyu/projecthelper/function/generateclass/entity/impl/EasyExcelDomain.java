@@ -1,7 +1,7 @@
-package kk.lanluyu.projecthelper.generateclass.entity.impl;
+package kk.lanluyu.projecthelper.function.generateclass.entity.impl;
 
-import kk.lanluyu.projecthelper.generateclass.entity.BaseGenerateInfo;
-import kk.lanluyu.projecthelper.generateclass.entity.Columns;
+import kk.lanluyu.projecthelper.function.generateclass.entity.BaseGenerateInfo;
+import kk.lanluyu.projecthelper.function.generateclass.entity.Columns;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

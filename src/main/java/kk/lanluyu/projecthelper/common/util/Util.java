@@ -1,16 +1,12 @@
 package kk.lanluyu.projecthelper.common.util;
 
-import kk.lanluyu.projecthelper.translate.baidu.TransApi;
+import kk.lanluyu.projecthelper.function.translate.baidu.TransApi;
 import lombok.extern.slf4j.Slf4j;
 import org.dromara.hutool.core.text.StrUtil;
 import org.dromara.hutool.core.util.RandomUtil;
-import org.dromara.hutool.crypto.SecureUtil;
-import org.dromara.hutool.crypto.digest.DigestUtil;
 import org.dromara.hutool.extra.pinyin.PinyinUtil;
 import org.dromara.hutool.swing.clipboard.ClipboardUtil;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

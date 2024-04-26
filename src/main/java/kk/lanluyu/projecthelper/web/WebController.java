@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebController {
 
     @PostMapping("run")
-    public CommonResponse run(){
+    public CommonResponse run(RunDto runDto){
         return null;
     }
 
