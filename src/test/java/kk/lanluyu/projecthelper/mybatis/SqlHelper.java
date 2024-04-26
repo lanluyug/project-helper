@@ -20,9 +20,11 @@ public class SqlHelper {
     @Test
     public void completeSql(){
         String aa =
+                "[DEBUG] 2024-04-26 15:30:00 [http-nio-9002-exec-3] c.m.a.m.F.getOriginalDataList_mpCount - ==>  Preparing: SELECT COUNT(*) FROM (SELECT temp1.*, IFNULL(temp2.escalation_type, 0) escalation_type, temp2.report_farmer_info_id, temp2.status FROM (SELECT t1.name farmer_name, t1.update_user_name, t1.year, t1.update_time, t1.id farmer_id, t1.code farmer_code, t2.breed_code FROM ams_farmers_info t1 LEFT JOIN ams_farmer_report_type t2 ON t1.`year` = t2.check_year AND t1.`code` = t2.farmer_code WHERE t1.`year` = ? AND t1.region_code = ? AND t1.farmer_source = ? AND t1.is_delete = 0 AND t2.breed_code IN (?) AND t2.report_type = ?) temp1 INNER JOIN (SELECT id report_farmer_info_id, farmer_id, IF(`status` = -1, 0, 1) escalation_type, status FROM ams_report_farmer_info WHERE report_type = ? AND industry_type = ? AND check_year = ? AND farmer_source = ? AND breed_id IN (?) AND county_code = ?) temp2 ON temp1.farmer_id = temp2.farmer_id) temp3 WHERE (temp3.status <> 1 OR temp3.status IS NULL)\n" +
+                        "[DEBUG] 2024-04-26 15:30:00 [http-nio-9002-exec-3] c.m.a.m.F.getOriginalDataList_mpCount - ==> Parameters: 2024(Integer), 360121(String), 1(Integer), null, 2(Integer), 2(Integer), 0(Integer), 2024(Integer), 1(Integer), 6678(Long), 360121(String)\n"
 
-                "2024-04-18 14:10:06.286 DEBUG 7004 --- [nio-9002-exec-4] c.m.a.m.R.selectList                     : ==>  Preparing: SELECT farmer_id,county_code,province_code FROM ams_report_farmer_info WHERE (report_type = ? AND industry_type = ? AND check_year >= ? AND check_year <= ? AND county_code = ? AND is_delete = ?)\n" +
-                        "2024-04-18 14:10:06.287 DEBUG 7004 --- [nio-9002-exec-4] c.m.a.m.R.selectList                     : ==> Parameters: 2(Integer), 0(Integer), 2024(Integer), 2024(Integer), 370812(String), false(Boolean)\n";
+                ;
+
         String[] split = aa.split("\n");
         String sql = split[0].split("==>")[1]
                 .replace("Preparing:", "").trim()
