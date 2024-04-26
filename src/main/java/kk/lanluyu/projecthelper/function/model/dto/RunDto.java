@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.web;
+package kk.lanluyu.projecthelper.function.model.dto;
 
 import lombok.Data;
 
@@ -14,4 +14,6 @@ public class RunDto {
     private Integer mode;
 
     private Integer id;
+
+    private String settings;
 }

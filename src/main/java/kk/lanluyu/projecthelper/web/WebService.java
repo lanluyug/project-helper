@@ -1,6 +1,8 @@
 package kk.lanluyu.projecthelper.web;
 
 import kk.lanluyu.projecthelper.common.domain.CommonResponse;
+import kk.lanluyu.projecthelper.function.model.dto.RunDto;
+import kk.lanluyu.projecthelper.function.model.vo.RunVo;
 
 /**
  * @author zzh
@@ -9,5 +11,9 @@ import kk.lanluyu.projecthelper.common.domain.CommonResponse;
 
 public interface WebService {
 
-    CommonResponse run(RunDto runDto);
+    /**
+     * @param runDto
+     * @return {@link CommonResponse}<{@link RunVo}>
+     */
+    CommonResponse<RunVo> run(RunDto runDto);
 }

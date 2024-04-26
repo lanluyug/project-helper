@@ -1,0 +1,11 @@
+### Send POST request with json body
+POST http://localhost:8737/api/web/run
+Content-Type: application/json
+
+{
+  "id": 1,
+  "text": "\"a\"+\"b\""
+}
+
+#########
+GET http://192.168.1.5:8737/api/web/test

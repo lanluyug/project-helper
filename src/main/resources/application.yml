@@ -1,5 +1,7 @@
 # Spring配置
 spring:
+  mvc:
+
   # 资源信息
   messages:
     # 国际化资源文件路径
@@ -13,3 +15,8 @@ spring:
       max-file-size: 10MB
       # 设置总上传的文件大小
       max-request-size: 20MB
+
+server:
+  port: 8737
+  servlet:
+    context-path: /api
