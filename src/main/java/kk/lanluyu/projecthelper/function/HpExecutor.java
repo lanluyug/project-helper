@@ -1,8 +1,8 @@
 package kk.lanluyu.projecthelper.function;
 
 
-import kk.lanluyu.projecthelper.function.model.dto.RunDto;
-import kk.lanluyu.projecthelper.function.model.vo.RunVo;
+import kk.lanluyu.projecthelper.model.dto.RunDto;
+import kk.lanluyu.projecthelper.model.vo.RunVo;
 
 
 /**

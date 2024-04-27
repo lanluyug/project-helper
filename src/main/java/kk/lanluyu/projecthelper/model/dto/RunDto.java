@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.function.model.dto;
+package kk.lanluyu.projecthelper.model.dto;
 
 import lombok.Data;
 

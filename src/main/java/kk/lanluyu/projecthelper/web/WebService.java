@@ -1,8 +1,11 @@
 package kk.lanluyu.projecthelper.web;
 
 import kk.lanluyu.projecthelper.common.domain.CommonResponse;
-import kk.lanluyu.projecthelper.function.model.dto.RunDto;
-import kk.lanluyu.projecthelper.function.model.vo.RunVo;
+import kk.lanluyu.projecthelper.model.dto.RunDto;
+import kk.lanluyu.projecthelper.model.vo.OptionVo;
+import kk.lanluyu.projecthelper.model.vo.RunVo;
+
+import java.util.List;
 
 /**
  * @author zzh
@@ -16,4 +19,5 @@ public interface WebService {
      * @return {@link CommonResponse}<{@link RunVo}>
      */
     CommonResponse<RunVo> run(RunDto runDto);
+    CommonResponse<List<OptionVo>> listMode();
 }

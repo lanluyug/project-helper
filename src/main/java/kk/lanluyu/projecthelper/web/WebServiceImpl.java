@@ -3,11 +3,14 @@ package kk.lanluyu.projecthelper.web;
 import com.alibaba.fastjson2.JSON;
 import kk.lanluyu.projecthelper.common.domain.CommonResponse;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
-import kk.lanluyu.projecthelper.function.model.dto.RunDto;
-import kk.lanluyu.projecthelper.function.model.vo.RunVo;
+import kk.lanluyu.projecthelper.model.dto.RunDto;
+import kk.lanluyu.projecthelper.model.vo.OptionVo;
+import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author zzh
@@ -26,4 +29,8 @@ public class WebServiceImpl implements WebService{
         return CommonResponse.success(hpExecutorContext.run(runDto));
     }
 
+    @Override
+    public CommonResponse<List<OptionVo>> listMode() {
+        return CommonResponse.success(OptionVo.getModeList());
+    }
 }

@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.function.model.dos;
+package kk.lanluyu.projecthelper.model.dos;
 
 import lombok.Data;
 

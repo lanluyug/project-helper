@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.function.model.vo;
+package kk.lanluyu.projecthelper.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

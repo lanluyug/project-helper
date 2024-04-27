@@ -1,10 +1,13 @@
 package kk.lanluyu.projecthelper.web;
 
 import kk.lanluyu.projecthelper.common.domain.CommonResponse;
-import kk.lanluyu.projecthelper.function.model.dto.RunDto;
-import kk.lanluyu.projecthelper.function.model.vo.RunVo;
+import kk.lanluyu.projecthelper.model.dto.RunDto;
+import kk.lanluyu.projecthelper.model.vo.OptionVo;
+import kk.lanluyu.projecthelper.model.vo.RunVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author zzh
@@ -27,5 +30,11 @@ public class WebController {
         System.out.println("test");
         return CommonResponse.success("test", "");
     }
+
+    @GetMapping("listMode")
+    public CommonResponse<List<OptionVo>> listMode(){
+        return webService.listMode();
+    }
+
 
 }
