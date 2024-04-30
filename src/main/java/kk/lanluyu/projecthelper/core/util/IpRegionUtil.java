@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * IP归属地。离线查询
  * @author zzh
  * @date 2024-04-29
  */

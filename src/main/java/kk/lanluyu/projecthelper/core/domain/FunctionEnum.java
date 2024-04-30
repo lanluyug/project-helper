@@ -26,6 +26,8 @@ public enum FunctionEnum {
             "例如输入：1600000000", 0),
     PARSE_TO_TIMESTAMP(5, "转换成时间戳",
             "例如输入：2024-04-27 17:57:07", 0),
+    IP_TO_REGION(7, "ip归属地查询",
+            "例如输入：111.75.192.2", 0),
     ;
     /**
      * todo

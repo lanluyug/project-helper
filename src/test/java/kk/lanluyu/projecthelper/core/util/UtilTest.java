@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.util;
+package kk.lanluyu.projecthelper.core.util;
 
 import kk.lanluyu.projecthelper.core.util.NamingUtils;
 import kk.lanluyu.projecthelper.core.util.Util;
