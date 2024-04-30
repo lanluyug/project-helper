@@ -1,5 +1,6 @@
 package kk.lanluyu.projecthelper.produceclass.entity;
 
+import kk.lanluyu.projecthelper.core.util.NamingUtils;
 import kk.lanluyu.projecthelper.function.generateclass.entity.Columns;
 import kk.lanluyu.projecthelper.function.generateclass.entity.impl.EasyExcelDomain;
 import kk.lanluyu.projecthelper.core.util.Util;
@@ -86,12 +87,12 @@ public class ProduceEasyExcelEntityTest {
         }
         switch (type){
             case 1:
-                return Util.getChineseVariableName(text);
+                return NamingUtils.getChineseVariableName(text);
             case 2:
-                return Util.getRandomName();
+                return NamingUtils.getRandomName();
             case 3:
             default:
-                return Util.getFirstLetterUnrepeated(text, namingSet);
+                return NamingUtils.getFirstLetterUnrepeated(text, namingSet);
         }
     }
 

@@ -13,22 +13,15 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.font.FontProvider;
-import com.itextpdf.styledxmlparser.jsoup.Jsoup;
-import com.itextpdf.styledxmlparser.jsoup.nodes.Element;
-import com.itextpdf.styledxmlparser.jsoup.nodes.Node;
-import com.itextpdf.styledxmlparser.jsoup.select.Elements;
 import kk.lanluyu.projecthelper.core.domain.CommonException;
 import kk.lanluyu.projecthelper.core.util.html2pdf.CustomTagWorkerFactory;
 import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderAndFooterSet;
 import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderFooterHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class Html2PdfUtils {
