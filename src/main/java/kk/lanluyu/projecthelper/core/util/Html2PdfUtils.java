@@ -85,14 +85,11 @@ public class Html2PdfUtils {
      * @param headerAndFooterSet 页眉页脚相关设置不传不生成
      * @param isAbstract         是否为摘要页
      */
-    public static boolean html2Pdf(String htmlContent,
+    public static void html2Pdf(String htmlContent,
                                    String fileName,
                                    String basePath,
                                    HeaderAndFooterSet headerAndFooterSet, boolean isAbstract) {
 
-        AtomicBoolean isTidied = new AtomicBoolean(false);
-        // 处理分页组件
-        htmlContent = tidyPagingTags(htmlContent, isAbstract, isTidied);
         try {
             ConverterProperties props = new ConverterProperties();
             FontProvider fp = new FontProvider();
@@ -108,68 +105,6 @@ public class Html2PdfUtils {
         } catch (FileNotFoundException e) {
             log.error("html转pdf异常:{}", e.getMessage(), e);
         }
-        return isTidied.get();
-    }
-
-    private static String tidyPagingTags(String htmlContent, boolean isAbstract, AtomicBoolean isTidyed) {
-        // pdf字体加粗 ，<strong>或者<b>的样式font-weight:bolder，概率性失效，前端已处理
-        htmlContent = htmlContent.replace("<strong>", "<strong style=\"font-weight: 900 !important;\">");
-        // 摘要没有分页组件
-        if (isAbstract) {
-            return htmlContent;
-        }
-        com.itextpdf.styledxmlparser.jsoup.nodes.Document document;
-        try {
-            document = Jsoup.parse(htmlContent);
-            String pagingStyle = "paging-flag-tag";
-            Element body = document.body();
-            Elements pagingTags = body.getElementsByClass(pagingStyle);
-            // 如果没有分页组件，直接返回
-            if (CollectionUtils.isEmpty(pagingTags)) {
-                return htmlContent;
-            }
-            isTidyed.set(true);
-            int pagingTimes = pagingTags.size();
-            for (Element pagingTag : pagingTags) {
-                Elements parents = pagingTag.parents();
-                for (Element parent : parents) {
-                    String className = parent.className();
-                    if ("components-edit-content".equalsIgnoreCase(className)) {
-                        Node node = parent.parent();
-                        if (node != null) {
-                            node.after(pagingTag);
-                            node.remove();
-                        }
-                    }
-                }
-            }
-
-            Elements wrappers = body.getElementsByClass("page-preview-wrapper");
-            if (!CollectionUtils.isEmpty(wrappers)) {
-                Element wrapper = wrappers.get(0);
-                String style = wrapper.attr("style");
-                String[] split = org.apache.commons.lang3.StringUtils.split(style, ";");
-                List<String> height = Arrays.stream(split)
-                        .filter(s -> s.contains("height"))
-                        .collect(Collectors.toList());
-                if (!CollectionUtils.isEmpty(height)) {
-                    double heightNum = 0;
-                    String originHeight = height.get(0);
-                    String[] heightPx = org.apache.commons.lang3.StringUtils.split(height.get(0), ":");
-                    if (heightPx != null && heightPx.length == 2) {
-                        String heightStr = org.apache.commons.lang3.StringUtils.substringBefore(heightPx[1].trim(), "px");
-                        // PDF中A4纸的高度是842如果新增一个分页符，则将pdf内容的高度增加280px
-                        heightNum = Double.parseDouble(heightStr) + pagingTimes * 842;
-                    }
-                    String newStyle = style.replace(originHeight, "height:" + heightNum + "px");
-                    wrapper.attr("style", newStyle);
-                }
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return htmlContent;
-        }
-        return document.toString();
     }
 
     /**
