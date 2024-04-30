@@ -74,7 +74,7 @@ public class Html2PdfUtils {
     /**
      * @param htmlContent        html文本
      * @param fileName           文件名
-     * @param basePath           字体文件夹路径
+     * @param baseFontPath           字体文件夹路径
      * @param headerAndFooterSet 页眉页脚相关设置不传不生成
      * @param isAbstract         是否为摘要页
      */
