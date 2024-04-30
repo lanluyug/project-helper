@@ -1,12 +1,11 @@
 package kk.lanluyu.projecthelper.core.util;
 
-import kk.lanluyu.projecthelper.core.domain.Constants;
 import kk.lanluyu.projecthelper.function.generateclass.entity.BaseGenerateInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-
+import org.dromara.hutool.core.util.CharsetUtil;
 import java.io.StringWriter;
 import java.util.Properties;
 import java.util.function.Function;
@@ -29,7 +28,7 @@ public abstract class VelocityUtil {
             // 加载classpath目录下的vm文件
             p.setProperty("resource.loader.file.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
             // 定义字符集
-            p.setProperty(Velocity.INPUT_ENCODING, Constants.UTF8);
+            p.setProperty(Velocity.INPUT_ENCODING, CharsetUtil.NAME_UTF_8);
             // 初始化Velocity引擎，指定配置Properties
             Velocity.init(p);
         }
