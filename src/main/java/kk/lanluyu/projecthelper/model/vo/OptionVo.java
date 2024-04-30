@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.model.vo;
 
-import kk.lanluyu.projecthelper.common.domain.FunctionEnum;
+import kk.lanluyu.projecthelper.core.domain.FunctionEnum;
 import lombok.Data;
 
 import java.util.Arrays;

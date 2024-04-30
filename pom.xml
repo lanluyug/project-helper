@@ -94,6 +94,11 @@
             <artifactId>commons-jexl3</artifactId>
             <version>3.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>html2pdf</artifactId>
+            <version>5.0.3</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

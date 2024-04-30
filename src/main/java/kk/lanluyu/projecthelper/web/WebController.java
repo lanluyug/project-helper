@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.web;
 
-import kk.lanluyu.projecthelper.common.domain.CommonResponse;
+import kk.lanluyu.projecthelper.core.domain.CommonResponse;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;
 import kk.lanluyu.projecthelper.model.vo.RunVo;

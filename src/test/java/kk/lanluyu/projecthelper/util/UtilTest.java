@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.util;
 
-import kk.lanluyu.projecthelper.common.util.Util;
+import kk.lanluyu.projecthelper.core.util.Util;
 import org.junit.jupiter.api.Test;
 
 class UtilTest {

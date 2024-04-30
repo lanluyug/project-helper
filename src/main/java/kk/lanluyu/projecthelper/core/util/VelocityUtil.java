@@ -1,6 +1,6 @@
-package kk.lanluyu.projecthelper.common.util;
+package kk.lanluyu.projecthelper.core.util;
 
-import kk.lanluyu.projecthelper.common.Constants;
+import kk.lanluyu.projecthelper.core.Constants;
 import kk.lanluyu.projecthelper.function.generateclass.entity.BaseGenerateInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.Template;

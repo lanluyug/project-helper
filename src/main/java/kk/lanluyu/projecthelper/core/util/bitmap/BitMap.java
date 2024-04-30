@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.common.util.bitmap;
+package kk.lanluyu.projecthelper.core.util.bitmap;
 
 /**
  * BitMap接口，用于将某个int或long值映射到一个数组中，从而判定某个值是否存在

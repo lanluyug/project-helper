@@ -1,7 +1,7 @@
 package kk.lanluyu.projecthelper.web;
 
 import com.alibaba.fastjson2.JSON;
-import kk.lanluyu.projecthelper.common.domain.CommonResponse;
+import kk.lanluyu.projecthelper.core.domain.CommonResponse;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;

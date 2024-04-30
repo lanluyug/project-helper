@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.lang;
 
-import kk.lanluyu.projecthelper.common.util.Util;
+import kk.lanluyu.projecthelper.core.util.Util;
 import org.apache.commons.jexl3.JexlEngine;
 import org.apache.commons.jexl3.JexlExpression;
 import org.apache.commons.jexl3.MapContext;
@@ -10,7 +10,6 @@ import org.junit.Test;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import java.lang.reflect.Method;
 
 public class StrHelper {
 

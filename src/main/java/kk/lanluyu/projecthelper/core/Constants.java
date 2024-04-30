@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.common;
+package kk.lanluyu.projecthelper.core;
 
 /**
  * 通用常量信息

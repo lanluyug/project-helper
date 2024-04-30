@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.common.util;
+package kk.lanluyu.projecthelper.core.util;
 
 import kk.lanluyu.projecthelper.function.translate.baidu.TransApi;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.common.util;
+package kk.lanluyu.projecthelper.core.util;
 
 import org.dromara.hutool.core.date.DateTime;
 import org.dromara.hutool.core.date.DateUtil;

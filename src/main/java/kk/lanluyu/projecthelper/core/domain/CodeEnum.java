@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.common.domain;
+package kk.lanluyu.projecthelper.core.domain;
 
 /**
  * @author 刘春发

@@ -1,7 +1,7 @@
 package kk.lanluyu.projecthelper.function.impl;
 
-import kk.lanluyu.projecthelper.common.util.Util;
-import kk.lanluyu.projecthelper.common.util.VelocityUtil;
+import kk.lanluyu.projecthelper.core.util.Util;
+import kk.lanluyu.projecthelper.core.util.VelocityUtil;
 import kk.lanluyu.projecthelper.function.HpExecutor;
 import kk.lanluyu.projecthelper.function.generateclass.entity.Columns;
 import kk.lanluyu.projecthelper.function.generateclass.entity.impl.EasyExcelDomain;
@@ -9,12 +9,10 @@ import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.VelocityContext;
-import org.dromara.hutool.core.text.StrUtil;
 import org.dromara.hutool.extra.pinyin.PinyinUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Component采用 HpExecutor_ + id的形式
