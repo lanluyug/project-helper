@@ -1,4 +1,4 @@
-package kk.lanluyu.projecthelper.core;
+package kk.lanluyu.projecthelper.core.domain;
 
 /**
  * 通用常量信息

@@ -80,20 +80,22 @@ public class Html2PdfUtils {
      */
     public static void html2Pdf(String htmlContent,
                                    String fileName,
-                                   String basePath,
+                                   String baseFontPath,
                                    HeaderAndFooterSet headerAndFooterSet, boolean isAbstract) {
 
         try {
             ConverterProperties props = new ConverterProperties();
             FontProvider fp = new FontProvider();
-            fp.addDirectory(basePath);
+            fp.addDirectory(baseFontPath);
             PdfDocument doc = new PdfDocument(new PdfWriter(fileName));
             doc.setDefaultPageSize(PageSize.A4);
             props.setTagWorkerFactory(new CustomTagWorkerFactory());
             props.setFontProvider(fp);
-            //添加页眉页脚
-            HeaderFooterHandler handler = new HeaderFooterHandler(true, headerAndFooterSet, isAbstract);
-            doc.addEventHandler(PdfDocumentEvent.END_PAGE, handler);
+            if(headerAndFooterSet != null){
+                //添加页眉页脚
+                HeaderFooterHandler handler = new HeaderFooterHandler(true, headerAndFooterSet, isAbstract);
+                doc.addEventHandler(PdfDocumentEvent.END_PAGE, handler);
+            }
             HtmlConverter.convertToPdf(htmlContent, doc, props);
         } catch (FileNotFoundException e) {
             log.error("html转pdf异常:{}", e.getMessage(), e);
