@@ -1,13 +1,13 @@
 package kk.lanluyu.projecthelper.core.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author zzh
  * @date 2024/04/26
  */
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public enum FunctionEnum {
 
@@ -32,7 +32,6 @@ public enum FunctionEnum {
     /**
      * todo
      * 6、html转pdf
-     * 7、ip归属地查询
      * 8、cron表达式
      */
 
