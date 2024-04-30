@@ -1,5 +1,6 @@
 package kk.lanluyu.projecthelper.model.dto;
 
+import com.alibaba.fastjson2.JSONObject;
 import lombok.Data;
 
 /**
@@ -15,5 +16,5 @@ public class RunDto {
 
     private Integer id;
 
-    private String settings;
+    private JSONObject settings;
 }
