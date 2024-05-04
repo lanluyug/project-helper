@@ -2,6 +2,7 @@ package kk.lanluyu.projecthelper.function.impl;
 
 import kk.lanluyu.projecthelper.core.util.IpRegionUtil;
 import kk.lanluyu.projecthelper.function.HpExecutor;
+import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
  * @author zzh
  * @date 2024/04/27
  */
-@Component("HpExecutor_7")
+@Component(HpExecutorContext.COMPONENT_PREFIX + "7")
 @Slf4j
 public class IpToRegion7Fun implements HpExecutor {
 

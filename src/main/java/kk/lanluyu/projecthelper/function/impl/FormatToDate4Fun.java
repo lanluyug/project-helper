@@ -2,6 +2,7 @@ package kk.lanluyu.projecthelper.function.impl;
 
 
 import kk.lanluyu.projecthelper.function.HpExecutor;
+import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @author zzh
  * @date 2024/04/27
  */
-@Component("HpExecutor_4")
+@Component(HpExecutorContext.COMPONENT_PREFIX + "4")
 @Slf4j
 public class FormatToDate4Fun implements HpExecutor {
 

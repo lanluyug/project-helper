@@ -4,6 +4,7 @@ import kk.lanluyu.projecthelper.core.util.NamingUtils;
 import kk.lanluyu.projecthelper.core.util.Util;
 import kk.lanluyu.projecthelper.core.util.VelocityUtil;
 import kk.lanluyu.projecthelper.function.HpExecutor;
+import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.function.generateclass.entity.Columns;
 import kk.lanluyu.projecthelper.function.generateclass.entity.impl.EasyExcelDomain;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
@@ -20,7 +21,7 @@ import java.util.*;
  * @author zzh
  * @date 2024/04/27
  */
-@Component("HpExecutor_3")
+@Component(HpExecutorContext.COMPONENT_PREFIX + "3")
 @Slf4j
 public class ProduceEasyExcelEntity3Fun implements HpExecutor {
 
