@@ -1,7 +1,6 @@
 package kk.lanluyu.projecthelper.function.impl;
 
 import kk.lanluyu.projecthelper.core.util.NamingUtils;
-import kk.lanluyu.projecthelper.core.util.Util;
 import kk.lanluyu.projecthelper.core.util.VelocityUtil;
 import kk.lanluyu.projecthelper.function.HpExecutor;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
@@ -28,15 +27,13 @@ public class ProduceEasyExcelEntity3Fun implements HpExecutor {
     @Override
     public RunVo execute(RunDto runDto) {
 
-        /**
-         * todo
-         */
+        // todo
         String className = "Region2023Excel";
-        /**
+        /*
          * baiduTranslate = 1
          * randomTranslate = 2
          * pinyin首字母 = 3
-         * */
+         */
         int variableType = 3;
         String[] split = runDto.getText().split("\n");
         String header = split[0];
@@ -63,9 +60,11 @@ public class ProduceEasyExcelEntity3Fun implements HpExecutor {
             column.setHead(items[i]);
             column.setVariable(names[i]);
             column.setIndex(i);
-//            if(i == 0){
-//                column.setJavaType("Long");
-//            }
+            /*
+            if(i == 0){
+                column.setJavaType("Long");
+            }
+             */
             columns.add(column);
         }
         easyExcelDomain.setColumns(columns);

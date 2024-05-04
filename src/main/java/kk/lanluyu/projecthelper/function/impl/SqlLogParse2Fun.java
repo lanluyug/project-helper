@@ -5,13 +5,9 @@ import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.jexl3.JexlEngine;
-import org.apache.commons.jexl3.JexlExpression;
-import org.apache.commons.jexl3.MapContext;
-import org.apache.commons.jexl3.internal.Engine;
+import org.dromara.hutool.core.text.CharSequenceUtil;
 import org.dromara.hutool.core.text.StrUtil;
 import org.springframework.stereotype.Component;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +47,7 @@ public class SqlLogParse2Fun implements HpExecutor {
                 })
                 .collect(Collectors.toList());
         for (String param : params) {
-            sql = StrUtil.replaceFirst(sql, "?", param, false);
+            sql = CharSequenceUtil.replaceFirst(sql, "?", param, false);
         }
         log.info(sql);
         return new RunVo(sql);
