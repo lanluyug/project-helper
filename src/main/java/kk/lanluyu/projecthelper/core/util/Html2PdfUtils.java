@@ -20,13 +20,11 @@ import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderFooterHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.dromara.hutool.core.io.IoUtil;
 import org.dromara.hutool.core.io.file.FileUtil;
-import org.dromara.hutool.core.stream.StreamUtil;
 import org.dromara.hutool.extra.management.ManagementUtil;
 import org.dromara.hutool.extra.management.OsInfo;
 import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,8 +37,7 @@ import java.util.*;
 @Slf4j
 public class Html2PdfUtils {
 
-    private static final String SUFFIX_PDF = ".pdf";
-    public static final String BASE_PATH = System.getProperty("user.dir");
+    public static final String SUFFIX_PDF = ".pdf";
 
     /**
      * @param htmlContent
@@ -100,7 +97,7 @@ public class Html2PdfUtils {
         }else{
             throw new UnsupportedOperationException("只支持windows和Linux系统");
         }
-        File tempFile = FileUtil.createTempFile();
+        File tempFile = FileUtil.createTempFile(".pdf", true);
         html2Pdf(html, tempFile.getAbsolutePath(), baseFontPath, null, false);
 
         try {

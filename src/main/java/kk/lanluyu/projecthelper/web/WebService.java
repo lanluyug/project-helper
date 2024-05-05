@@ -1,7 +1,7 @@
 package kk.lanluyu.projecthelper.web;
 
 import kk.lanluyu.projecthelper.core.domain.CommonResponse;
-import kk.lanluyu.projecthelper.model.dto.Html2PdfExportDto;
+import kk.lanluyu.projecthelper.model.dto.ExportDto;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
@@ -23,5 +23,5 @@ public interface WebService {
     CommonResponse<RunVo> run(RunDto runDto);
     CommonResponse<List<OptionVo>> listMode();
 
-    void export(HttpServletResponse response, Html2PdfExportDto exportDto);
+    void export(HttpServletResponse response, ExportDto exportDto);
 }

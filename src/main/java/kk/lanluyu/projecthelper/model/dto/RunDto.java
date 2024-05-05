@@ -12,8 +12,6 @@ public class RunDto {
 
     private String text;
 
-    private Integer mode;
-
     private Integer id;
 
     private JSONObject settings;

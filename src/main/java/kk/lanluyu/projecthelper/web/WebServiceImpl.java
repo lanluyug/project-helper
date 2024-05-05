@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import kk.lanluyu.projecthelper.core.domain.CommonResponse;
 import kk.lanluyu.projecthelper.core.util.ExportUtils;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
-import kk.lanluyu.projecthelper.model.dto.Html2PdfExportDto;
+import kk.lanluyu.projecthelper.model.dto.ExportDto;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
@@ -37,7 +37,7 @@ public class WebServiceImpl implements WebService{
     }
 
     @Override
-    public void export(HttpServletResponse response, Html2PdfExportDto exportDto) {
+    public void export(HttpServletResponse response, ExportDto exportDto) {
         ExportUtils.exportPdf(response, exportDto);
     }
 

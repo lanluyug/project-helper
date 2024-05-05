@@ -2,7 +2,6 @@ package kk.lanluyu.projecthelper.web;
 
 import kk.lanluyu.projecthelper.core.domain.CommonResponse;
 import kk.lanluyu.projecthelper.model.dto.ExportDto;
-import kk.lanluyu.projecthelper.model.dto.Html2PdfExportDto;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
@@ -28,19 +27,13 @@ public class WebController {
         return webService.run(runDto);
     }
 
-    @GetMapping("test")
-    public CommonResponse<String> test(){
-        System.out.println("test");
-        return CommonResponse.success("test", "");
-    }
-
     @GetMapping("listMode")
     public CommonResponse<List<OptionVo>> listMode(){
         return webService.listMode();
     }
 
-    @GetMapping("export")
-    public void export(HttpServletResponse response, @RequestBody Html2PdfExportDto exportDto){
+    @PostMapping("export")
+    public void export(HttpServletResponse response, @RequestBody ExportDto exportDto){
         webService.export(response, exportDto);
     }
 
