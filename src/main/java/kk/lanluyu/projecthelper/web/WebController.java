@@ -1,12 +1,15 @@
 package kk.lanluyu.projecthelper.web;
 
 import kk.lanluyu.projecthelper.core.domain.CommonResponse;
+import kk.lanluyu.projecthelper.model.dto.ExportDto;
+import kk.lanluyu.projecthelper.model.dto.Html2PdfExportDto;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -36,5 +39,9 @@ public class WebController {
         return webService.listMode();
     }
 
+    @GetMapping("export")
+    public void export(HttpServletResponse response, @RequestBody Html2PdfExportDto exportDto){
+        webService.export(response, exportDto);
+    }
 
 }

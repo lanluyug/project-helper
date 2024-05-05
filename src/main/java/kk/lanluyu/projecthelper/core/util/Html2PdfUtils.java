@@ -18,11 +18,24 @@ import kk.lanluyu.projecthelper.core.util.html2pdf.CustomTagWorkerFactory;
 import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderAndFooterSet;
 import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderFooterHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.io.IoUtil;
+import org.dromara.hutool.core.io.file.FileUtil;
+import org.dromara.hutool.core.stream.StreamUtil;
+import org.dromara.hutool.extra.management.ManagementUtil;
+import org.dromara.hutool.extra.management.OsInfo;
 import org.springframework.util.StringUtils;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
 
+/**
+ * @author zzh
+ * @date 2024/05/04
+ */
 @Slf4j
 public class Html2PdfUtils {
 
@@ -70,15 +83,44 @@ public class Html2PdfUtils {
         }
     }
 
+    public static void html2Pdf(String html, HttpServletResponse response){
+        OsInfo osInfo = ManagementUtil.getOsInfo();
+        String baseFontPath = "";
+        if(osInfo.isLinux()){
+            /*
+            Linux 安装字体需要root用户执行下面三个命令
+            mkfontscale
+            mkfontdir
+            fc-cache -fv
+             */
+            baseFontPath = "/usr/share/fonts";
+        }
+        else if(osInfo.isWindows()){
+            baseFontPath = "C:\\Windows\\Fonts";
+        }else{
+            throw new UnsupportedOperationException("只支持windows和Linux系统");
+        }
+        File tempFile = FileUtil.createTempFile();
+        html2Pdf(html, tempFile.getAbsolutePath(), baseFontPath, null, false);
+
+        try {
+            IoUtil.copy(Files.newInputStream(tempFile.toPath()), response.getOutputStream());
+        } catch (IOException e) {
+            log.error("html2Pdf导出失败");
+            throw new RuntimeException(e);
+        }finally {
+            FileUtil.del(tempFile);
+        }
+    }
 
     /**
-     * @param htmlContent        html文本
+     * @param html        html文本
      * @param fileName           文件名
      * @param baseFontPath           字体文件夹路径
      * @param headerAndFooterSet 页眉页脚相关设置不传不生成
      * @param isAbstract         是否为摘要页
      */
-    public static void html2Pdf(String htmlContent,
+    public static void html2Pdf(String html,
                                    String fileName,
                                    String baseFontPath,
                                    HeaderAndFooterSet headerAndFooterSet, boolean isAbstract) {
@@ -96,7 +138,7 @@ public class Html2PdfUtils {
                 HeaderFooterHandler handler = new HeaderFooterHandler(true, headerAndFooterSet, isAbstract);
                 doc.addEventHandler(PdfDocumentEvent.END_PAGE, handler);
             }
-            HtmlConverter.convertToPdf(htmlContent, doc, props);
+            HtmlConverter.convertToPdf(html, doc, props);
         } catch (FileNotFoundException e) {
             log.error("html转pdf异常:{}", e.getMessage(), e);
         }

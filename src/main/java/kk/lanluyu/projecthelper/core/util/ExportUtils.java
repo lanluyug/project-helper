@@ -2,6 +2,7 @@ package kk.lanluyu.projecthelper.core.util;
 
 import com.alibaba.excel.EasyExcel;
 import kk.lanluyu.projecthelper.core.domain.CommonException;
+import kk.lanluyu.projecthelper.model.dto.Html2PdfExportDto;
 import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.List;
  * @date 2024-04-30
  */
 @Slf4j
-public class ExcelUtils {
+public class ExportUtils {
 
 
     public static void setResponse(HttpServletResponse response, String fileName) throws UnsupportedEncodingException {
@@ -28,9 +29,22 @@ public class ExcelUtils {
     public static <T> void exportExcel(HttpServletResponse response, String fileName,
                                        Class<T> clazz, List<T> records){
         try{
-            ExcelUtils.setResponse(response, fileName);
+            ExportUtils.setResponse(response, fileName);
             EasyExcel.write(response.getOutputStream(), clazz)
                     .autoCloseStream(Boolean.FALSE).sheet().doWrite(records);
+        } catch (IOException e) {
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            log.error("导出失败:{}", e.getMessage(), e);
+            throw new CommonException("", "导出失败");
+        }
+    }
+
+    public static void exportPdf(HttpServletResponse response, Html2PdfExportDto exportDto){
+        try{
+            ExportUtils.setResponse(response, exportDto.getFileName());
+            Html2PdfUtils.html2Pdf(exportDto.getHtml(), response);
         } catch (IOException e) {
             response.reset();
             response.setContentType("application/json");

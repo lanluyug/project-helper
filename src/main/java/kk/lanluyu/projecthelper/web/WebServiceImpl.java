@@ -2,14 +2,16 @@ package kk.lanluyu.projecthelper.web;
 
 import com.alibaba.fastjson2.JSON;
 import kk.lanluyu.projecthelper.core.domain.CommonResponse;
+import kk.lanluyu.projecthelper.core.util.ExportUtils;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
+import kk.lanluyu.projecthelper.model.dto.Html2PdfExportDto;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.OptionVo;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -33,4 +35,11 @@ public class WebServiceImpl implements WebService{
     public CommonResponse<List<OptionVo>> listMode() {
         return CommonResponse.success(OptionVo.getModeList());
     }
+
+    @Override
+    public void export(HttpServletResponse response, Html2PdfExportDto exportDto) {
+        ExportUtils.exportPdf(response, exportDto);
+    }
+
+
 }

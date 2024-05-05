@@ -26,6 +26,7 @@ public enum FunctionEnum {
             "例如输入：1600000000", YesOrNoEnum.NO),
     PARSE_TO_TIMESTAMP(5, "转换成时间戳",
             "例如输入：2024-04-27 17:57:07", YesOrNoEnum.NO),
+    HTML_TO_PDF(6, "HTML转PDF", "输入完整HTML", YesOrNoEnum.NO),
     IP_TO_REGION(7, "ip归属地查询",
             "例如输入：111.75.192.2", YesOrNoEnum.NO),
     ;
