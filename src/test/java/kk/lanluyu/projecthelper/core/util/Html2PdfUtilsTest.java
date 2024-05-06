@@ -23,7 +23,7 @@ class Html2PdfUtilsTest {
                 "</body>\n" +
                 "</html>";
 
-        Html2PdfUtils.html2Pdf(html, destFileName, baseFontPath, null, false);
+        Html2PdfUtils.html2Pdf(html, destFileName);
     }
 
     private HeaderAndFooterSet getHeaderAndFooterSet(Boolean isAbstract) {

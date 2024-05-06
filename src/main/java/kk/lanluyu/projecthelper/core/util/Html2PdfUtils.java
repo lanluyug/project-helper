@@ -26,7 +26,6 @@ import org.dromara.hutool.extra.management.ManagementUtil;
 import org.dromara.hutool.extra.management.OsInfo;
 import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -85,7 +84,7 @@ public class Html2PdfUtils {
         }
     }
 
-    public static void html2Pdf(String html, HttpServletResponse response){
+    public static String html2Pdf(String html, String fileName){
         OsInfo osInfo = ManagementUtil.getOsInfo();
         String baseFontPath = "";
         if(osInfo.isLinux()){
@@ -102,16 +101,21 @@ public class Html2PdfUtils {
         }else{
             throw new UnsupportedOperationException("只支持windows和Linux系统");
         }
-        String tempPath = SystemUtil.get(ManagementUtil.TMPDIR) + IdUtil.fastSimpleUUID() + ".pdf";
-        html2Pdf(html, tempPath, baseFontPath, null, false);
-
+        if(StringUtils.isEmpty(fileName)){
+            fileName= SystemUtil.get(ManagementUtil.TMPDIR) + IdUtil.fastSimpleUUID() + ".pdf";
+        }
+        html2Pdf(html, fileName, baseFontPath, null, false);
+        return fileName;
+    }
+    public static void html2Pdf(String html, HttpServletResponse response){
+        String tempPath = html2Pdf(html, "");
         try {
             IoUtil.copy(Files.newInputStream(Paths.get(tempPath)), response.getOutputStream());
         } catch (IOException e) {
             log.error("html2Pdf导出失败");
             throw new CommonException("html2Pdf导出失败");
         }finally {
-            FileUtil.del(new File(tempPath));
+            FileUtil.del(tempPath);
         }
     }
 

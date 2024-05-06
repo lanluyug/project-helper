@@ -1,5 +1,6 @@
-package kk.lanluyu.projecthelper.core.domain;
+package kk.lanluyu.projecthelper.function;
 
+import kk.lanluyu.projecthelper.core.domain.YesOrNoEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -31,8 +32,6 @@ public enum FunctionEnum {
             "例如输入：111.75.192.2", YesOrNoEnum.NO),
     ;
     /**
-     * todo
-     * 6、html转pdf
      * 8、cron表达式
      */
 

@@ -1,7 +1,5 @@
 package kk.lanluyu.projecthelper.core.util;
 
-import kk.lanluyu.projecthelper.core.util.NamingUtils;
-import kk.lanluyu.projecthelper.core.util.Util;
 import org.junit.jupiter.api.Test;
 
 class UtilTest {

@@ -3,7 +3,7 @@ package kk.lanluyu.projecthelper.core.util;
 import org.junit.Test;
 
 
-class IpRegionUtilTest {
+public class IpRegionUtilTest {
 
 
     @Test

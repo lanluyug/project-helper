@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.model.vo;
 
-import kk.lanluyu.projecthelper.core.domain.FunctionEnum;
+import kk.lanluyu.projecthelper.function.FunctionEnum;
 import kk.lanluyu.projecthelper.core.domain.YesOrNoEnum;
 import lombok.Data;
 

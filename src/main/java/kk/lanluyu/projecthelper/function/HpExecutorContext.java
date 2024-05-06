@@ -16,7 +16,7 @@ import java.util.Map;
 @Slf4j
 public class HpExecutorContext {
 
-    public static final String COMPONENT_PREFIX = "HpExecutor_";
+    public static final String COMPONENT_PREFIX = "hpExecutor";
 
     @Autowired
     private Map<String, HpExecutor> hpExecutorMap;
