@@ -59,13 +59,4 @@ public enum FunctionEnum {
         this.singleExporter = singleExporter;
     }
 
-
-    public static FunctionEnum getInstance(Integer id){
-        for (FunctionEnum functionEnum : FunctionEnum.values()) {
-            if(functionEnum.getId().equals(id)){
-                return functionEnum;
-            }
-        }
-        throw new UnsupportedOperationException("不支持此id：" + id);
-    }
 }

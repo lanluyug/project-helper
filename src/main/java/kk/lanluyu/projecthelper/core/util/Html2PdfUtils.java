@@ -44,8 +44,9 @@ public class Html2PdfUtils {
     public static final String SUFFIX_PDF = ".pdf";
 
     /**
+     * html转pdf plan B
      * @param htmlContent
-     * @param fileName    文件名
+     * @param fileName
      * @param basePath
      */
     public static void createPdf(String htmlContent, String fileName, String basePath) {
@@ -85,22 +86,7 @@ public class Html2PdfUtils {
     }
 
     public static String html2Pdf(String html, String fileName){
-        OsInfo osInfo = ManagementUtil.getOsInfo();
-        String baseFontPath = "";
-        if(osInfo.isLinux()){
-            /*
-            Linux 安装字体需要root用户执行下面三个命令
-            mkfontscale
-            mkfontdir
-            fc-cache -fv
-             */
-            baseFontPath = "/usr/share/fonts";
-        }
-        else if(osInfo.isWindows()){
-            baseFontPath = "C:\\Windows\\Fonts";
-        }else{
-            throw new UnsupportedOperationException("只支持windows和Linux系统");
-        }
+        String baseFontPath = getDefaultFontPath();
         if(StringUtils.isEmpty(fileName)){
             fileName= SystemUtil.get(ManagementUtil.TMPDIR) + IdUtil.fastSimpleUUID() + ".pdf";
         }
@@ -116,6 +102,24 @@ public class Html2PdfUtils {
             throw new CommonException("html2Pdf导出失败");
         }finally {
             FileUtil.del(tempPath);
+        }
+    }
+
+    private static String getDefaultFontPath(){
+        OsInfo osInfo = ManagementUtil.getOsInfo();
+        if(osInfo.isLinux()){
+            /*
+            Linux 安装字体需要root用户执行下面三个命令
+            mkfontscale
+            mkfontdir
+            fc-cache -fv
+             */
+            return  "/usr/share/fonts";
+        }
+        else if(osInfo.isWindows()){
+            return  "C:\\Windows\\Fonts";
+        }else{
+            throw new UnsupportedOperationException("只支持windows和Linux系统");
         }
     }
 
