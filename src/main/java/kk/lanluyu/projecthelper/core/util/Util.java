@@ -1,13 +1,7 @@
 package kk.lanluyu.projecthelper.core.util;
 
-import kk.lanluyu.projecthelper.function.translate.baidu.TransApi;
 import lombok.extern.slf4j.Slf4j;
-import org.dromara.hutool.core.text.StrUtil;
-import org.dromara.hutool.core.util.RandomUtil;
-import org.dromara.hutool.extra.pinyin.PinyinUtil;
 import org.dromara.hutool.swing.clipboard.ClipboardUtil;
-
-import java.util.Set;
 
 /**
  * @author zzh
@@ -15,6 +9,8 @@ import java.util.Set;
  */
 @Slf4j
 public class Util {
+
+    private Util(){}
 
     public static void printAndCopy2Clipboard(CharSequence text){
         log.info(text.toString());

@@ -18,8 +18,10 @@ import kk.lanluyu.projecthelper.core.util.html2pdf.CustomTagWorkerFactory;
 import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderAndFooterSet;
 import kk.lanluyu.projecthelper.core.util.html2pdf.HeaderFooterHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.hutool.core.data.id.IdUtil;
 import org.dromara.hutool.core.io.IoUtil;
 import org.dromara.hutool.core.io.file.FileUtil;
+import org.dromara.hutool.core.util.SystemUtil;
 import org.dromara.hutool.extra.management.ManagementUtil;
 import org.dromara.hutool.extra.management.OsInfo;
 import org.springframework.util.StringUtils;
@@ -28,6 +30,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -36,6 +39,8 @@ import java.util.*;
  */
 @Slf4j
 public class Html2PdfUtils {
+
+    private Html2PdfUtils(){}
 
     public static final String SUFFIX_PDF = ".pdf";
 
@@ -97,16 +102,16 @@ public class Html2PdfUtils {
         }else{
             throw new UnsupportedOperationException("只支持windows和Linux系统");
         }
-        File tempFile = FileUtil.createTempFile(".pdf", true);
-        html2Pdf(html, tempFile.getAbsolutePath(), baseFontPath, null, false);
+        String tempPath = SystemUtil.get(ManagementUtil.TMPDIR) + IdUtil.fastSimpleUUID() + ".pdf";
+        html2Pdf(html, tempPath, baseFontPath, null, false);
 
         try {
-            IoUtil.copy(Files.newInputStream(tempFile.toPath()), response.getOutputStream());
+            IoUtil.copy(Files.newInputStream(Paths.get(tempPath)), response.getOutputStream());
         } catch (IOException e) {
             log.error("html2Pdf导出失败");
-            throw new RuntimeException(e);
+            throw new CommonException("html2Pdf导出失败");
         }finally {
-            FileUtil.del(tempFile);
+            FileUtil.del(new File(tempPath));
         }
     }
 
@@ -160,7 +165,7 @@ public class Html2PdfUtils {
             pdfDocument.close();
         } catch (IOException e) {
             log.error("合并pdf异常{}", e.getMessage(), e);
-            throw new RuntimeException(e);
+            throw new CommonException("合并pdf异常");
         }
 
     }
