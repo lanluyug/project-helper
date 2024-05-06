@@ -2,7 +2,9 @@ package kk.lanluyu.projecthelper.core.util;
 
 import org.junit.jupiter.api.Test;
 
-class UtilTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class NamingUtilsTest {
 
     @Test
     void translateByBaidu() {
@@ -15,4 +17,6 @@ class UtilTest {
         String s = NamingUtils.getChineseVariableName("属省名称");
         assert "provinceName".equals(s);
     }
+
+
 }

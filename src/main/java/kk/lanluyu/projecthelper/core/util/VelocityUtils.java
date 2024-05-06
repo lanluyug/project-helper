@@ -15,9 +15,9 @@ import java.util.function.Function;
  * @date 2024-04-23
  */
 @Slf4j
-public abstract class VelocityUtil {
+public abstract class VelocityUtils {
 
-    private VelocityUtil(){}
+    private VelocityUtils(){}
     /**
      * 初始化vm方法
      */
@@ -54,7 +54,7 @@ public abstract class VelocityUtil {
     public static <T extends BaseGenerateInfo> String render(T baseGenerateInfo,
                                 Function<T, VelocityContext> contextFunction,
                                 String templateResource){
-        VelocityUtil.initVelocity();
+        VelocityUtils.initVelocity();
         VelocityContext context = contextFunction.apply(baseGenerateInfo);
         Template tpl = Velocity.getTemplate(templateResource);
         StringWriter sw = new StringWriter();

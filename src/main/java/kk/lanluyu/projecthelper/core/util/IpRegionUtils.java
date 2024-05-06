@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
  * @date 2024-04-29
  */
 @Slf4j
-public class IpRegionUtil {
+public class IpRegionUtils {
 
-    private IpRegionUtil(){}
+    private IpRegionUtils(){}
 
     /**
      * 可并发使用，用整个 xdb 数据缓存创建的查询对象可以安全的用于并发

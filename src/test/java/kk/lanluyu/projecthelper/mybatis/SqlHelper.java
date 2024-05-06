@@ -1,14 +1,10 @@
 package kk.lanluyu.projecthelper.mybatis;
 
-import kk.lanluyu.projecthelper.core.util.Util;
+import kk.lanluyu.projecthelper.core.util.TextUtils;
 import kk.lanluyu.projecthelper.function.impl.SqlLogParse2Fun;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
-import org.dromara.hutool.core.text.StrUtil;
 import org.junit.Test;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author zzh
@@ -31,7 +27,7 @@ public class SqlHelper {
         runDto.setText(input);
         SqlLogParse2Fun sqlLogParse2Fun = new SqlLogParse2Fun();
         RunVo execute = sqlLogParse2Fun.execute(runDto);
-        Util.printAndCopy2Clipboard(execute.getResult());
+        TextUtils.printAndCopy2Clipboard(execute.getResult());
 
     }
 }

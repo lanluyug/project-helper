@@ -1,7 +1,7 @@
 package kk.lanluyu.projecthelper.chinese.pinyin;
 
 import kk.lanluyu.projecthelper.core.util.NamingUtils;
-import kk.lanluyu.projecthelper.core.util.Util;
+import kk.lanluyu.projecthelper.core.util.TextUtils;
 import org.dromara.hutool.core.io.file.FileUtil;
 import org.dromara.hutool.core.io.resource.Resource;
 import org.dromara.hutool.core.io.resource.ResourceUtil;
@@ -39,6 +39,6 @@ public class PinyinTest {
             String enumConstructLine = firstLetter.toUpperCase() + "(" + id + "L, " + "\"" + name + "\"),\n";
             sb.append(enumConstructLine);
         }
-        Util.printAndCopy2Clipboard(sb);
+        TextUtils.printAndCopy2Clipboard(sb);
     }
 }

@@ -1,7 +1,8 @@
 package kk.lanluyu.projecthelper.function.impl;
 
 import kk.lanluyu.projecthelper.core.util.NamingUtils;
-import kk.lanluyu.projecthelper.core.util.VelocityUtil;
+import kk.lanluyu.projecthelper.core.util.TextUtils;
+import kk.lanluyu.projecthelper.core.util.VelocityUtils;
 import kk.lanluyu.projecthelper.function.HpExecutor;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.function.generateclass.entity.Columns;
@@ -10,9 +11,9 @@ import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.VelocityContext;
+import org.dromara.hutool.core.text.CharPool;
 import org.dromara.hutool.extra.pinyin.PinyinUtil;
 import org.springframework.stereotype.Component;
-
 import java.util.*;
 
 /**
@@ -37,40 +38,35 @@ public class ProduceEasyExcelEntity3Fun implements HpExecutor {
         int variableType = 3;
         String[] split = runDto.getText().split("\n");
         String header = split[0];
-        String[] items = header.split("\t");
+        List<String> items = TextUtils.splitField(header);
         StringBuilder naming = new StringBuilder();
         Set<String> namingSets = new HashSet<>();
         if(split.length >= 2){
             naming = new StringBuilder(split[1]);
         } else {
-            for (int i = 0; i < items.length; i++) {
-                String translated = getTranslateInfoByType(variableType, items[i], namingSets);
+            for (int i = 0; i < items.size(); i++) {
+                String translated = getTranslateInfoByType(variableType, items.get(i), namingSets);
                 naming.append(translated);
-                if(i != items.length - 1){
-                    naming.append("\t");
+                if(i != items.size() - 1){
+                    naming.append(CharPool.TAB);
                 }
             }
         }
-        String[] names = naming.toString().split("\t");
+        List<String> names = TextUtils.splitField(naming.toString());
         EasyExcelDomain easyExcelDomain = new EasyExcelDomain();
 
         List<Columns> columns = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
+        for (int i = 0; i < names.size(); i++) {
             Columns column = new Columns();
-            column.setHead(items[i]);
-            column.setVariable(names[i]);
+            column.setHead(items.get(i));
+            column.setVariable(names.get(i));
             column.setIndex(i);
-            /*
-            if(i == 0){
-                column.setJavaType("Long");
-            }
-             */
             columns.add(column);
         }
         easyExcelDomain.setColumns(columns);
         easyExcelDomain.setClassName(className);
 
-        String render = VelocityUtil.render(easyExcelDomain, this::prepareContext, "vm/easyexcel.java.vm");
+        String render = VelocityUtils.render(easyExcelDomain, this::prepareContext, "vm/easyexcel.java.vm");
         log.info(render);
         return new RunVo(render);
     }
@@ -78,7 +74,7 @@ public class ProduceEasyExcelEntity3Fun implements HpExecutor {
 
     public VelocityContext prepareContext(EasyExcelDomain easyExcelDomain)
     {
-        VelocityContext velocityContext = VelocityUtil.baseContext(easyExcelDomain);
+        VelocityContext velocityContext = VelocityUtils.baseContext(easyExcelDomain);
         velocityContext.put("columns", easyExcelDomain.getColumns());
         return velocityContext;
     }

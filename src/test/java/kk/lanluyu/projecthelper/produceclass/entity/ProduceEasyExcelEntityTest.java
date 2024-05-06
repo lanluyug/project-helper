@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.produceclass.entity;
 
-import kk.lanluyu.projecthelper.core.util.Util;
+import kk.lanluyu.projecthelper.core.util.TextUtils;
 import kk.lanluyu.projecthelper.function.impl.ProduceEasyExcelEntity3Fun;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
@@ -24,7 +24,7 @@ public class ProduceEasyExcelEntityTest {
         RunDto runDto = new RunDto();
         runDto.setText(input);
         RunVo execute = new ProduceEasyExcelEntity3Fun().execute(runDto);
-        Util.printAndCopy2Clipboard(execute.getResult());
+        TextUtils.printAndCopy2Clipboard(execute.getResult());
     }
 
 }

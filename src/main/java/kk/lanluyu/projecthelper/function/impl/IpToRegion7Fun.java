@@ -1,6 +1,6 @@
 package kk.lanluyu.projecthelper.function.impl;
 
-import kk.lanluyu.projecthelper.core.util.IpRegionUtil;
+import kk.lanluyu.projecthelper.core.util.IpRegionUtils;
 import kk.lanluyu.projecthelper.function.HpExecutor;
 import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
@@ -20,7 +20,7 @@ public class IpToRegion7Fun implements HpExecutor {
 
     @Override
     public RunVo execute(RunDto runDto) {
-        String region = IpRegionUtil.getRegionByIp(runDto.getText());
+        String region = IpRegionUtils.getRegionByIp(runDto.getText());
         log.info(region);
         return new RunVo(region);
     }
