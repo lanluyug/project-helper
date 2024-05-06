@@ -2,20 +2,17 @@ package kk.lanluyu.projecthelper.function.impl;
 
 
 import kk.lanluyu.projecthelper.function.HpExecutor;
-import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
 import org.dromara.hutool.core.date.DateTime;
 import org.dromara.hutool.core.date.DateUtil;
-import org.springframework.stereotype.Component;
+
 
 /**
- * Component采用 HpExecutor_ + id的形式
  * @author zzh
- * @date 2024/04/27
+ * @date 2024-05-06
  */
-@Component(HpExecutorContext.COMPONENT_PREFIX + "4")
 @Slf4j
 public class FormatToDate4Fun implements HpExecutor {
 

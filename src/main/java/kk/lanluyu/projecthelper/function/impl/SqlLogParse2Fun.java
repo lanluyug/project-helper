@@ -1,23 +1,19 @@
 package kk.lanluyu.projecthelper.function.impl;
 
 import kk.lanluyu.projecthelper.function.HpExecutor;
-import kk.lanluyu.projecthelper.function.HpExecutorContext;
 import kk.lanluyu.projecthelper.model.dto.RunDto;
 import kk.lanluyu.projecthelper.model.vo.RunVo;
 import lombok.extern.slf4j.Slf4j;
 import org.dromara.hutool.core.text.CharSequenceUtil;
-import org.dromara.hutool.core.text.StrUtil;
-import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 /**
- * Component采用 HpExecutor_ + id的形式
  * @author zzh
- * @date 2024/04/27
+ * @date 2024-05-06
  */
-@Component(HpExecutorContext.COMPONENT_PREFIX + "2")
 @Slf4j
 public class SqlLogParse2Fun implements HpExecutor {
 
