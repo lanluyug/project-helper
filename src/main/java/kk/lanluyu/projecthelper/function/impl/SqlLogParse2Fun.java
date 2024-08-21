@@ -34,6 +34,8 @@ public class SqlLogParse2Fun implements HpExecutor {
                         return item.split("\\(Long\\)")[0];
                     }else if(item.contains("(String)")){
                         return  "'" + item.split("\\(String\\)")[0].trim() +"'";
+                    }else if(item.contains("(Timestamp)")){
+                        return  "'" + item.split("\\(Timestamp\\)")[0].trim() +"'";
                     }else if(item.contains("(Boolean)")){
                         boolean aFalse = item.contains("false");
                         if(aFalse) return "0";
